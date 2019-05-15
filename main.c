@@ -9,6 +9,9 @@
  *Return: 0 always
  */
 
+int state = 0;
+int line_count = 0;
+
 int main(int argc, char *argv[])
 {
 	char *line = NULL, **words = NULL;
@@ -17,13 +20,12 @@ int main(int argc, char *argv[])
 	stack_t *dlinkedlist = NULL;
 	unsigned int line_num = 0;
 	void (*cmd)(stack_t **stack, unsigned int line_number) = NULL;
-	int state = 0;
 
 	(void) argc;
-	(void) state;
 	stream = fopen(argv[1], "r");
 	while (getline(&line, &line_size, stream) != -1)
 	{
+		line_count++;
 		words = split(line, " \n");
 		line_num = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
 		cmd = get_op(words[0]);
@@ -31,7 +33,7 @@ int main(int argc, char *argv[])
 		free(line);
 		line = NULL;
 	}
-	state = 0;
+
 	return (1);
 }
 
@@ -84,7 +86,6 @@ char **split(char *str, const char *delim)
 void (*get_op(char *command))(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
-
 	instruction_t ops[] = {
 		{"push", op_push},
 		{"pall", op_pall},
@@ -98,6 +99,6 @@ void (*get_op(char *command))(stack_t **stack, unsigned int line_number)
 			return (ops[i].f);
 		i++;
 	}
-	fprintf(stderr, "L<line_number>: unknown instruction %s\n", command);
+	fprintf(stderr, "L%i: unknown instruction %s\n", line_count, command);
 	exit(98);
 }
