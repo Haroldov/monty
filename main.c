@@ -20,17 +20,19 @@ int main(int argc, char *argv[])
 	int state = 0;
 
 	(void) argc;
+	(void) state;
 	stream = fopen(argv[1], "r");
 	while (getline(&line, &line_size, stream) != -1)
 	{
 		words = split(line, " \n");
-		get_op(words[0]);
 		line_num = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
+		cmd = get_op(words[0]);
 		cmd(&dlinkedlist, line_num);
-		printf("%i\n", state);
 		free(line);
 		line = NULL;
 	}
+	state = 0;
+	return (1);
 }
 
 /**
@@ -85,6 +87,7 @@ void (*get_op(char *command))(stack_t **stack, unsigned int line_number)
 
 	instruction_t ops[] = {
 		{"push", op_push},
+		{"pall", op_pall},
 		{NULL, NULL}
 	};
 	/* list */
@@ -95,6 +98,6 @@ void (*get_op(char *command))(stack_t **stack, unsigned int line_number)
 			return (ops[i].f);
 		i++;
 	}
-	fprintf(stderr, "L<line_number>: unknown instruction %s", command);
+	fprintf(stderr, "L<line_number>: unknown instruction %s\n", command);
 	exit(98);
 }
