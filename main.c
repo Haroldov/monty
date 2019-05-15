@@ -3,7 +3,6 @@
 #include <string.h>
 #include <ctype.h>
 #include "monty.h"
-
 /**
  *main - entry point
  *@argc: number of arguments
@@ -11,8 +10,7 @@
  *Return: 0 always
  */
 
-int state = 0;
-int line_count = 0;
+int data = 0;
 
 int main(int argc, char *argv[])
 {
@@ -36,17 +34,17 @@ int main(int argc, char *argv[])
 	}
 	while (getline(&line, &line_size, stream) != -1)
 	{
-		line_count++;
+		line_num++;
 		words = split(line, " \n");
 		if (check_if_not_num(words[1]) == -1)
 		{
 			free(line);
 			free(words);
-			fprintf(stderr, "L%i: usage: push integer\n", line_count);
+			fprintf(stderr, "L%i: usage: push integer\n", line_num);
 			exit(EXIT_FAILURE);
 		}
-		line_num = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
-		cmd = get_op(words[0]);
+		data = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
+		cmd = get_op(words[0], line_num);
 		cmd(&dlinkedlist, line_num);
 		free(line);
 		free(words);
@@ -101,8 +99,13 @@ char **split(char *str, const char *delim)
 	*(argv + i) = NULL;
 	return (argv);
 }
-
-void (*get_op(char *command))(stack_t **stack, unsigned int line_number)
+/**
+ * get_op - gets function
+ * @command: command to check for
+ * @LN: line number for error output
+ * Return: none
+ */
+void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 	instruction_t ops[] = {
@@ -110,7 +113,6 @@ void (*get_op(char *command))(stack_t **stack, unsigned int line_number)
 		{"pall", op_pall},
 		{NULL, NULL}
 	};
-	/* list */
 
 	while (ops[i].opcode != NULL)
 	{
@@ -118,7 +120,7 @@ void (*get_op(char *command))(stack_t **stack, unsigned int line_number)
 			return (ops[i].f);
 		i++;
 	}
-	fprintf(stderr, "L%i: unknown instruction %s\n", line_count, command);
+	fprintf(stderr, "L%i: unknown instruction %s\n", line_number, command);
 	exit(98);
 }
 

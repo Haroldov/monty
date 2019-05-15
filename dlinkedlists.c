@@ -20,7 +20,12 @@ size_t print_dlistint(const stack_t *h)
 	}
 	return (numNodes);
 }
-
+/**
+ * add_dnodeint - add node at head of list
+ * @head: pointer to list
+ * @n: data to add
+ * Return: pointer to new node
+ */
 stack_t *add_dnodeint(stack_t **head, int n)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
