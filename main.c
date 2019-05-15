@@ -81,10 +81,9 @@ void (*get_op(char *command))(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 
-	instruction_t ops[] =
-	{
-	{"push", op_push},
-	{NULL, NULL}
+	instruction_t ops[] = {
+		{"push", op_push},
+		{NULL, NULL}
 	};
 	/* list */
 
@@ -94,7 +93,6 @@ void (*get_op(char *command))(stack_t **stack, unsigned int line_number)
 			return (ops[i].f);
 		i++;
 	}
-	
 	fprintf(stderr, "L<line_number>: unknown instruction %s", command);
-
+	exit(98);
 }
