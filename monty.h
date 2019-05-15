@@ -5,6 +5,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+<<<<<<< HEAD
+=======
+/*Global Variables*/
+extern int state; /*begins as stack*/
+
+/*Prototypes*/
+char **split(char *str, const char *delim);
+
+>>>>>>> 5b638241cf790f973be6abc14758fe540f940067
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer

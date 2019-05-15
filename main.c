@@ -10,16 +10,24 @@
 int main(int argc, char *argv[])
 {
 	char *line = NULL, **words = NULL;
-	FILE *stream;
+	FILE *stream = NULL;
 	size_t line_size = 0;
-	(void) argc;
+	stack_t *dlinkedlist = NULL;
+	unsigned int line_num = 0;
+	void (*cmd)(stack_t **stack, unsigned int line_number) = NULL;
+	int state = 0;
 
+	(void) argc;
 	stream = fopen(argv[1], "r");
-	while(getline(&line, &line_size, stream) != -1)
+	while (getline(&line, &line_size, stream) != -1)
 	{
 		words = split(line, " \n");
-		printf("cmd: %s num: %s\n", words[0], words[1]);
-                get_op(words[0], words[1]);
+		get_op(words[0]);
+		line_num = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
+		cmd(&dlinkedlist, line_num);
+		printf("%i\n", state);
+		free(line);
+		line = NULL;
 	}
 }
 
