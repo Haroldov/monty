@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*Prototypes*/
-char **split(char *str, const char *delim);
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -38,4 +36,8 @@ typedef struct instruction_s
 } instruction_t;
 
 
+/*Prototypes*/
+char **split(char *str, const char *delim);
+void (*get_op(char *command))(stack_t **stack, unsigned int line_number);
+void op_push(stack_t **stack, unsigned int line);
 #endif
