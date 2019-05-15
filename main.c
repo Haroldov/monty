@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 	stack_t *dlinkedlist = NULL;
 	unsigned int line_num = 0;
 	void (*cmd)(stack_t **stack, unsigned int line_number) = NULL;
+	int state = 0;
 
 	(void) argc;
 	stream = fopen(argv[1], "r");
@@ -24,6 +25,9 @@ int main(int argc, char *argv[])
 		/*cmd = get_op(words[0])*/
 		line_num = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
 		cmd(&dlinkedlist, line_num);
+		printf("%i\n", state);
+		free(line);
+		line = NULL;
 	}
 }
 

@@ -6,7 +6,7 @@
 #include <string.h>
 
 /*Global Variables*/
-extern char state = '\0'; /*begins as stack*/
+extern int state; /*begins as stack*/
 
 /*Prototypes*/
 char **split(char *str, const char *delim);
