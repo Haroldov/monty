@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "monty.h"
+
 /**
  *main - entry point
  *@argc: number of arguments
@@ -21,19 +23,36 @@ int main(int argc, char *argv[])
 	unsigned int line_num = 0;
 	void (*cmd)(stack_t **stack, unsigned int line_number) = NULL;
 
-	(void) argc;
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 	stream = fopen(argv[1], "r");
+	if (stream == NULL)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
 	while (getline(&line, &line_size, stream) != -1)
 	{
 		line_count++;
 		words = split(line, " \n");
+		if (check_if_not_num(words[1]) == -1)
+		{
+			free(line);
+			free(words);
+			fprintf(stderr, "L%i: usage: push integer\n", line_count);
+			exit(EXIT_FAILURE);
+		}
 		line_num = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
 		cmd = get_op(words[0]);
 		cmd(&dlinkedlist, line_num);
 		free(line);
+		free(words);
 		line = NULL;
 	}
-
+	fclose(stream);
 	return (1);
 }
 
@@ -101,4 +120,22 @@ void (*get_op(char *command))(stack_t **stack, unsigned int line_number)
 	}
 	fprintf(stderr, "L%i: unknown instruction %s\n", line_count, command);
 	exit(98);
+}
+
+/**
+ *check_if_not_num - checks if a string is a number
+ *@str: string to be checked
+ *Return: -1 if not num 1 if it is a num
+ */
+
+int check_if_not_num(char *str)
+{
+	int i;
+
+	if (str == NULL)
+		return (1);
+	for (i = 1; *(str + i) != '\0'; i++)
+		if (isdigit(*(str + i)) == 0)
+			return (-1);
+	return (1);
 }
