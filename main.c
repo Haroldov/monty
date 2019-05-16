@@ -36,16 +36,19 @@ int main(int argc, char *argv[])
 	{
 		line_num++;
 		words = split(line, " \n");
-		if (check_if_not_num(words[1]) == -1)
+		if (words != NULL)
 		{
-			fprintf(stderr, "L%i: usage: push integer\n", line_num);
-			goto free_all;
+			if (check_if_not_num(words[1]) == -1)
+			{
+				fprintf(stderr, "L%i: usage: push integer\n", line_num);
+				goto free_all;
+			}
+			data = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
+			cmd = get_op(words[0], line_num);
+			if (cmd == NULL)
+				goto free_all;
+			cmd(&dlinkedlist, line_num);
 		}
-		data = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
-		cmd = get_op(words[0], line_num);
-		if (cmd == NULL)
-			goto free_all;
-		cmd(&dlinkedlist, line_num);
 		free(words);
 		free(line);
 		line = NULL;
