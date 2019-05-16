@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 	while (getline(&line, &line_size, stream) != -1)
 	{
 		line_num++;
-		words = split(line, " \n");
+		words = split(line, " \n\t");
 		if (words != NULL)
 		{
 			if (check_if_not_num(words[1]) == -1 && strcmp(words[0], "push") == 0)
@@ -150,11 +150,9 @@ int check_if_not_num(char *str)
 
 	if (str == NULL)
 		return (1);
-	if (*str == '-' || *str == '+')
-		str++;
 	for (i = 0; *(str + i) != '\0'; i++)
 	{
-		if (isdigit(*(str + i)) == 0)
+		if (isdigit(*(str + i)) == 0 && *str != '-')
 			return (-1);
 	}
 	return (1);
