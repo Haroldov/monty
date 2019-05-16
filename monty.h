@@ -74,6 +74,7 @@ void op_pop(stack_t **dlinkedlist, unsigned int line_num);
 /*monty_ops#2*/
 void op_nop(stack_t **dlinkedlist, unsigned int line);
 void op_div(stack_t **dlinkedlist, unsigned int line);
+void op_mod(stack_t **dlinkedlist, unsigned int line);
 
 /*main*/
 char **split(char *str, const char *delim);
