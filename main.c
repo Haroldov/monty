@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 		words = split(line, " \n");
 		if (words != NULL)
 		{
-			if (check_if_not_num(words[1]) == -1)
+			if (check_if_not_num(words[1]) == -1 && strcmp(words[0], "push") == 0)
 			{
 				fprintf(stderr, "L%i: usage: push integer\n", line_num);
 				goto free_all;
