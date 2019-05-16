@@ -117,7 +117,7 @@ void op_pchar(stack_t **dlinkedlist, unsigned int line_num)
 		fclose(carrier.stream);
 		exit(EXIT_FAILURE);
 	}
-	if ((*dlinkedlist)->n > 127 || ((*dlinkedlist)->n < 0)
+	if ((*dlinkedlist)->n > 127 || ((*dlinkedlist)->n < 0))
 	{
 		fprintf(stderr, "L%i: can't pchar, value out of range\n", line_num);
 		free_dlistint(*dlinkedlist), free(carrier.words), free(carrier.line);
