@@ -78,6 +78,9 @@ void op_mod(stack_t **dlinkedlist, unsigned int line);
 void op_add(stack_t **dlinkedlist, unsigned int line_num);
 void op_pchar(stack_t **dlinkedlist, unsigned int line_num);
 
+/*monty_ops#3*/
+void op_sub(stack_t **dlinkedlist, unsigned int line_num);
+
 /*main*/
 char **split(char *str, const char *delim);
 void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number);
