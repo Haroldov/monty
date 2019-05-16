@@ -81,6 +81,7 @@ void op_pchar(stack_t **dlinkedlist, unsigned int line_num);
 /*monty_ops#3*/
 void op_sub(stack_t **dlinkedlist, unsigned int line_num);
 void op_mul(stack_t **dlinkedlist, unsigned int line_num);
+void op_pstr(stack_t **dlinkedlist, unsigned int line_num);
 
 /*main*/
 char **split(char *str, const char *delim);
