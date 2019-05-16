@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 		if (carrier.words != NULL && carrier.words[0][0] != '#')
 		{
 			if (check_if_not_num(carrier.words[1]) == -1 &&
-			    strcmp("push", carrier.words[0]) == 0)
+				strcmp("push", carrier.words[0]) == 0)
 			{       fprintf(stderr, "L%i: usage: push integer\n", line_num);
 				goto free_all;     }
 			carrier.data = (carrier.words[1] == NULL) ? 0 :
@@ -44,6 +44,8 @@ int main(int argc, char *argv[])
 			cmd(&dlinkedlist, line_num);
 			free(carrier.words);
 		}
+		else
+			free(carrier.words);
 		free(carrier.line);
 		carrier.line = NULL;
 	}
@@ -51,8 +53,7 @@ int main(int argc, char *argv[])
 	return (EXIT_SUCCESS);
 free_all:
 	free(carrier.line), free(carrier.words), free_dlistint(dlinkedlist);
-	fclose(carrier.stream);
-	exit(EXIT_FAILURE);
+	fclose(carrier.stream), exit(EXIT_FAILURE);
 }
 
 /**
