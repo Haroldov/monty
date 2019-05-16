@@ -58,6 +58,10 @@ void op_mul(stack_t **dlinkedlist, unsigned int line_num)
 void op_pstr(stack_t **dlinkedlist, unsigned int line_num)
 {
 	line_num = line_num;
+	stack_t *temp = NULL;
+
+	temp = *dlinkedlist;
+
 	if (dlistint_len(*dlinkedlist) < 1)
 	{
 		printf("\n");
@@ -65,13 +69,15 @@ void op_pstr(stack_t **dlinkedlist, unsigned int line_num)
 	}
 	else
 	{
-		while ((*dlinkedlist)->n != 0 && (*dlinkedlist)->next != NULL)
+		while (temp->n != 0 && temp->next != NULL)
 		{
-			if ((*dlinkedlist)->n >= 0 && (*dlinkedlist)->n <= 127)
+			if (temp->n >= 0 && temp->n <= 127)
 			{
-				putchar((*dlinkedlist)->n);
+				putchar(temp->n);
 			}
-			(*dlinkedlist) = (*dlinkedlist)->next;
+			else
+				break;
+			temp = temp->next;
 		}
 		putchar(10);
 	}
