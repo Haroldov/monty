@@ -126,6 +126,7 @@ void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 		{"pchar", op_pchar},
 		{"sub", op_sub},
 		{"mul", op_mul},
+		{"pstr", op_pstr},
 		{NULL, NULL}
 	};
 
