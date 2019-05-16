@@ -8,5 +8,13 @@
 void op_rotl(stack_t **dlinkedlist, unsigned int line_num)
 {
 	(void) line_num;
-	rev_dlistint(dlinkedlist);
+	stack_t tmp = *dlinkedlist;
+
+	while (tmp->next == NULL)
+		tmp = tmp->next;
+	tmp->next = *dlinkedlist;
+	(*dlinkedlist)->prev = tmp;
+	tmp = (*dlinkedlist)->next;
+	(*dlinkedlist)->next = NULL;
+	*dlinkedlist = tmp;
 }
