@@ -61,4 +61,6 @@ void op_pint(stack_t **dlinkedlist, unsigned int line);
 size_t print_dlistint(const stack_t *h);
 stack_t *add_dnodeint(stack_t **head, int n);
 int check_if_not_num(char *str);
+void op_pop(stack_t **dlinkedlist, unsigned int line_num);
+void delete_at_index(stack_t **dlistint_t, unsigned int index);
 #endif
