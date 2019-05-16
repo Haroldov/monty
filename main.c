@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "monty.h"
-int data = 0;
+carrier_t carrier = {0, NULL};
 
 /**
  *main - entry point
@@ -15,7 +15,6 @@ int data = 0;
 int main(int argc, char *argv[])
 {
 	char *line = NULL, **words = NULL;
-	FILE *stream = NULL;
 	size_t line_size = 0;
 	stack_t *dlinkedlist = NULL;
 	unsigned int line_num = 0;
@@ -24,35 +23,32 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{       fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);    }
-	stream = fopen(argv[1], "r");
-	if (stream == NULL)
+	carrier.stream = fopen(argv[1], "r");
+	if (carrier.stream == NULL)
 	{       fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);    }
-	while (getline(&line, &line_size, stream) != -1)
+	while (getline(&line, &line_size, carrier.stream) != -1)
 	{
 		line_num++;
 		words = split(line, " \n\t");
 		if (words != NULL)
 		{
 			if (check_if_not_num(words[1]) == -1 && strcmp("push", words[0]) == 0)
-			{
-				fprintf(stderr, "L%i: usage: push integer\n", line_num);
-				goto free_all;
-			}
-			data = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
+			{       fprintf(stderr, "L%i: usage: push integer\n", line_num);
+				goto free_all;       }
+			carrier.data = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
 			cmd = get_op(words[0], line_num);
+			free(words);
 			if (cmd == NULL)
 				goto free_all;
 			cmd(&dlinkedlist, line_num);
-			free(words);
 		}
-		free(line);
 		line = NULL;
 	}
-	free(line), free_dlistint(dlinkedlist), fclose(stream);
+	free(line), free_dlistint(dlinkedlist), fclose(carrier.stream);
 	return (EXIT_SUCCESS);
 free_all:
-	free(line), free(words), free_dlistint(dlinkedlist), fclose(stream);
+	free(line), free(words), free_dlistint(dlinkedlist), fclose(carrier.stream);
 	exit(EXIT_FAILURE);
 }
 
@@ -116,6 +112,7 @@ void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 	instruction_t ops[] = {
 		{"push", op_push},
 		{"pall", op_pall},
+		{"pint", op_pint},
 		{"pop", op_pop},
 		{NULL, NULL}
 	};
@@ -123,7 +120,10 @@ void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 	while (ops[i].opcode != NULL)
 	{
 		if (strcmp(command, ops[i].opcode) == 0)
+		{
+			free(command);
 			return (ops[i].f);
+		}
 		i++;
 	}
 	fprintf(stderr, "L%i: unknown instruction %s\n", line_number, command);

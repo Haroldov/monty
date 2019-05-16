@@ -5,8 +5,18 @@
 #include <stdlib.h>
 #include <string.h>
 #define LN unsigned int line_number
-/*Global Variables*/
-extern int data;
+
+/**
+ *struct carrier_s - auxiliar structure
+ *data: data to be inserted into stack or queue
+ *stream: file to be closed if one fails
+ */
+
+typedef struct carrier_s
+{
+	int data;
+	FILE *stream;
+} carrier_t;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -38,6 +48,8 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/*Global Variables*/
+extern carrier_t carrier;
 
 /*Prototypes*/
 void free_dlistint(stack_t *head);
@@ -45,6 +57,7 @@ char **split(char *str, const char *delim);
 void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number);
 void op_push(stack_t **stack, unsigned int line);
 void op_pall(stack_t **dlinkedlist, unsigned int line);
+void op_pint(stack_t **dlinkedlist, unsigned int line);
 size_t print_dlistint(const stack_t *h);
 stack_t *add_dnodeint(stack_t **head, int n);
 int check_if_not_num(char *str);
