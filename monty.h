@@ -90,6 +90,9 @@ void op_stack(stack_t **dlinkedlist, unsigned int line_num);
 void op_queue(stack_t **dlinkedlist, unsigned int line_num);
 void op_pstr(stack_t **dlinkedlist, unsigned int line_num);
 
+/*monty_ops#4*/
+void op_rotl(stack_t **dlinkedlist, unsigned int line_num);
+
 /*main*/
 char **split(char *str, const char *delim);
 void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number);
