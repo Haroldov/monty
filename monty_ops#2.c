@@ -31,6 +31,13 @@ void op_div(stack_t **dlinkedlist, unsigned int line_num)
 		fclose(carrier.stream);
 		exit(EXIT_FAILURE);
 	}
+	if ((*dlinkedlist)->n == 0)
+	{
+		fprintf(stderr, "L%i: division by zero\n", line_num);
+		free_dlistint(*dlinkedlist), free(carrier.words), free(carrier.line);
+		fclose(carrier.stream);
+		exit(EXIT_FAILURE);
+	}
 	a = (*dlinkedlist)->n;
 	b = (*dlinkedlist)->next->n;
 	b /= a;
