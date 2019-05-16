@@ -150,8 +150,12 @@ int check_if_not_num(char *str)
 
 	if (str == NULL)
 		return (1);
-	for (i = 1; *(str + i) != '\0'; i++)
+	if (*str == '-')
+		str++;
+	for (i = 0; *(str + i) != '\0'; i++)
+	{
 		if (isdigit(*(str + i)) == 0)
 			return (-1);
+	}
 	return (1);
 }
