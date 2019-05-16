@@ -46,7 +46,7 @@ void op_add(stack_t **dlinkedlist, unsigned int line_num)
 {
 	int a, b;
 
-	if ((*dlinkedlist)->next == NULL)
+	if (dlistint_len(*dlinkedlist) < 2)
 	{
 		fprintf(stderr, "L%i: can't add, stack too short\n", line_num);
 		free_dlistint(*dlinkedlist), free(carrier.words), free(carrier.line);
