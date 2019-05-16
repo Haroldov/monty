@@ -92,6 +92,7 @@ void op_pstr(stack_t **dlinkedlist, unsigned int line_num);
 
 /*monty_ops#4*/
 void op_rotl(stack_t **dlinkedlist, unsigned int line_num);
+void op_rotr(stack_t **dlinkedlist, unsigned int line_num);
 
 /*main*/
 char **split(char *str, const char *delim);

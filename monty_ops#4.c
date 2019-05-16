@@ -19,3 +19,22 @@ void op_rotl(stack_t **dlinkedlist, unsigned int line_num)
 	*dlinkedlist = tmp;
 	(*dlinkedlist)->prev = NULL;
 }
+
+/**
+ * op_rotr - subtracts the top two elements of the stack
+ * @dlinkedlist: pointer to list
+ * @line_num: line number for error
+ */
+void op_rotr(stack_t **dlinkedlist, unsigned int line_num)
+{
+	stack_t *tmp = *dlinkedlist;
+
+	(void) line_num;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+
+	tmp->prev->next = NULL;
+	tmp->prev = NULL;
+	tmp->next = (*dlinkedlist);
+	*dlinkedlist = tmp;
+}

@@ -130,6 +130,7 @@ void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 		{"queue", op_queue},
 		{"pstr", op_pstr},
 		{"rotl", op_rotl},
+		{"rotr", op_rotr},
 		{NULL, NULL}
 	};
 
