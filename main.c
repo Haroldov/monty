@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
 				goto free_all;
 			cmd(&dlinkedlist, line_num);
 		}
-		free(line);
 		line = NULL;
 	}
 	free(line), free_dlistint(dlinkedlist), fclose(carrier.stream);
