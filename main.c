@@ -48,8 +48,8 @@ int main(int argc, char *argv[])
 			if (cmd == NULL)
 				goto free_all;
 			cmd(&dlinkedlist, line_num);
+			free(words);
 		}
-		free(words);
 		free(line);
 		line = NULL;
 	}
@@ -103,7 +103,10 @@ char **split(char *str, const char *delim)
 	if (buffer != NULL)
 		*(argv) = buffer;
 	else
+	{
+		free(argv);
 		return (NULL);
+	}
 
 	for (i = 1; i < wNum; i++)
 		*(argv + i) = strtok(NULL, delim);
