@@ -12,6 +12,7 @@
  *@words: pointer to be freed
  *@line: pointer to be free
  *@stream: file to be closed if one fails
+ *@state: indicates whether is a stack (0) or a queue (1)
  */
 
 typedef struct carrier_s
@@ -20,6 +21,7 @@ typedef struct carrier_s
 	char **words;
 	char *line;
 	FILE *stream;
+	int state;
 } carrier_t;
 
 /**
@@ -64,6 +66,9 @@ size_t print_dlistint(const stack_t *h);
 stack_t *add_dnodeint(stack_t **head, int n);
 void delete_head(stack_t **dlistint_t);
 
+/*dlinkedlist#2*/
+stack_t *rev_dlistint(stack_t **h);
+
 /*monty_ops#1*/
 void op_push(stack_t **stack, unsigned int line);
 void op_pall(stack_t **dlinkedlist, unsigned int line);
@@ -81,6 +86,8 @@ void op_pchar(stack_t **dlinkedlist, unsigned int line_num);
 /*monty_ops#3*/
 void op_sub(stack_t **dlinkedlist, unsigned int line_num);
 void op_mul(stack_t **dlinkedlist, unsigned int line_num);
+void op_stack(stack_t **dlinkedlist, unsigned int line_num);
+void op_queue(stack_t **dlinkedlist, unsigned int line_num);
 
 /*main*/
 char **split(char *str, const char *delim);

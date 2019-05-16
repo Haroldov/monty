@@ -49,3 +49,29 @@ void op_mul(stack_t **dlinkedlist, unsigned int line_num)
 		delete_head(dlinkedlist);
 	}
 }
+
+/**
+ * op_stack - sets format to stack (LIFO)
+ * @dlinkedlist: pointer to list
+ * @line_num: line number for error
+ */
+void op_stack(stack_t **dlinkedlist, unsigned int line_num)
+{
+	(void) line_num;
+	if (carrier.state == 1)
+		rev_dlistint(dlinkedlist);
+	carrier.state = 0;
+}
+
+/**
+ * op_queue - sets format to queue (FIFO)
+ * @dlinkedlist: pointer to list
+ * @line_num: line number for error
+ */
+void op_queue(stack_t **dlinkedlist, unsigned int line_num)
+{
+	(void) line_num;
+	if (carrier.state == 0)
+		rev_dlistint(dlinkedlist);
+	carrier.state = 1;
+}
