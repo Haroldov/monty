@@ -61,6 +61,7 @@ void op_pstr(stack_t **dlinkedlist, unsigned int line_num)
 	if (dlistint_len(*dlinkedlist) < 1)
 	{
 		printf("\n");
+		return;
 	}
 	else
 	{
