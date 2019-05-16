@@ -88,23 +88,15 @@ void op_pstr(stack_t **dlinkedlist, unsigned int line_num)
 	line_num = line_num;
 	temp = *dlinkedlist;
 
-	if (dlistint_len(*dlinkedlist) < 1)
+	while (temp != NULL &&temp->n != 0 && temp->next != NULL)
 	{
-		printf("\n");
-		return;
-	}
-	else
-	{
-		while (temp->n != 0 && temp->next != NULL)
+		if (temp->n > 0 && temp->n <= 127)
 		{
-			if (temp->n >= 0 && temp->n <= 127)
-			{
-				putchar(temp->n);
-			}
-			else
-				break;
-			temp = temp->next;
+			putchar(temp->n);
 		}
-		putchar(10);
+		else
+			break;
+		temp = temp->next;
 	}
+	putchar('\n');
 }
