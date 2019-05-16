@@ -62,7 +62,7 @@ void free_dlistint(stack_t *head)
 void delete_head(stack_t **head)
 {
 	stack_t *tmp = *head, *tmp_del = NULL;
-	
+
 	tmp_del = tmp;
 	if ((*tmp).next != NULL)
 		(*tmp).next->prev = NULL;

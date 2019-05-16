@@ -8,8 +8,10 @@
 
 /**
  *struct carrier_s - auxiliar structure
- *data: data to be inserted into stack or queue
- *stream: file to be closed if one fails
+ *@data: data to be inserted into stack or queue
+ *@words: pointer to be freed
+ *@line: pointer to be free
+ *@stream: file to be closed if one fails
  */
 
 typedef struct carrier_s
