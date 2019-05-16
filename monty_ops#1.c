@@ -25,7 +25,10 @@ void op_push(stack_t **dlinkedlist, unsigned int line_num)
 {
 	/* Check if line_num is an integer */
 	(void) line_num;
-	add_dnodeint(dlinkedlist, carrier.data);
+	if (carrier.state == 0)
+		add_dnodeint(dlinkedlist, carrier.data);
+	else
+		add_dnodeint_end(dlinkedlist, carrier.data);
 }
 
 /**

@@ -58,8 +58,7 @@ void op_mul(stack_t **dlinkedlist, unsigned int line_num)
 void op_stack(stack_t **dlinkedlist, unsigned int line_num)
 {
 	(void) line_num;
-	if (carrier.state == 1)
-		rev_dlistint(dlinkedlist);
+	(void) dlinkedlist;
 	carrier.state = 0;
 }
 
@@ -71,8 +70,7 @@ void op_stack(stack_t **dlinkedlist, unsigned int line_num)
 void op_queue(stack_t **dlinkedlist, unsigned int line_num)
 {
 	(void) line_num;
-	if (carrier.state == 0)
-		rev_dlistint(dlinkedlist);
+	(void) dlinkedlist;
 	carrier.state = 1;
 }
 

@@ -68,6 +68,7 @@ void delete_head(stack_t **dlistint_t);
 
 /*dlinkedlist#2*/
 stack_t *rev_dlistint(stack_t **h);
+stack_t *add_dnodeint_end(stack_t **head, const int n);
 
 /*monty_ops#1*/
 void op_push(stack_t **stack, unsigned int line);
