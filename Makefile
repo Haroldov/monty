@@ -1,2 +1,2 @@
 output:
-	gcc -Wall -Werror -Wextra -pedantic *.c -o monty
+	gcc -Wall -Werror -Wextra -pedantic -g *.c -o monty

@@ -40,3 +40,17 @@ stack_t *add_dnodeint(stack_t **head, int n)
 	*head = new_node;
 	return (new_node);
 }
+
+/**
+ *free_dlistint -  free a dlistint_t list.
+ *@head: head of the list.
+ *Return: none
+ */
+
+void free_dlistint(stack_t *head)
+{
+	if (head == NULL)
+		return;
+	free_dlistint((*head).next);
+	free(head);
+}

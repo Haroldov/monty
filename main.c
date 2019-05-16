@@ -3,14 +3,14 @@
 #include <string.h>
 #include <ctype.h>
 #include "monty.h"
+int data = 0;
+
 /**
  *main - entry point
  *@argc: number of arguments
  *@argv: arguments
  *Return: 0 always
  */
-
-int data = 0;
 
 int main(int argc, char *argv[])
 {
@@ -46,12 +46,14 @@ int main(int argc, char *argv[])
 		data = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
 		cmd = get_op(words[0], line_num);
 		cmd(&dlinkedlist, line_num);
-		free(line);
 		free(words);
+		free(line);
 		line = NULL;
 	}
+	free(line);
+	free_dlistint(dlinkedlist);
 	fclose(stream);
-	return (1);
+	return (0);
 }
 
 /**

@@ -40,6 +40,7 @@ typedef struct instruction_s
 
 
 /*Prototypes*/
+void free_dlistint(stack_t *head);
 char **split(char *str, const char *delim);
 void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number);
 void op_push(stack_t **stack, unsigned int line);
