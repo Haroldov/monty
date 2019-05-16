@@ -83,9 +83,9 @@ void op_queue(stack_t **dlinkedlist, unsigned int line_num)
  */
 void op_pstr(stack_t **dlinkedlist, unsigned int line_num)
 {
-	line_num = line_num;
 	stack_t *temp = NULL;
 
+	line_num = line_num;
 	temp = *dlinkedlist;
 
 	if (dlistint_len(*dlinkedlist) < 1)
