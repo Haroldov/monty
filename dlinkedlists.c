@@ -57,7 +57,6 @@ void free_dlistint(stack_t *head)
 /**
  * delete_head - deletes head node
  * @head: pointer to list
- * @index: index of node to delete
  */
 void delete_head(stack_t **head)
 {

@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	if (carrier.stream == NULL)
 	{       fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);    }
-	while (getline(&carrier.line, &line_size, carrier.stream) != -1)
+	while (getline(&(carrier.line), &line_size, carrier.stream) != -1)
 	{
 		line_num++;
 		carrier.words = split(carrier.line, " \n\t");
