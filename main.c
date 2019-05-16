@@ -38,13 +38,13 @@ int main(int argc, char *argv[])
 		words = split(line, " \n");
 		if (check_if_not_num(words[1]) == -1)
 		{
-			free(line);
-			free(words);
 			fprintf(stderr, "L%i: usage: push integer\n", line_num);
-			exit(EXIT_FAILURE);
+			goto free_all;
 		}
 		data = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
 		cmd = get_op(words[0], line_num);
+		if (cmd == NULL)
+			goto free_all;
 		cmd(&dlinkedlist, line_num);
 		free(words);
 		free(line);
@@ -53,7 +53,13 @@ int main(int argc, char *argv[])
 	free(line);
 	free_dlistint(dlinkedlist);
 	fclose(stream);
-	return (0);
+	return (EXIT_SUCCESS);
+free_all:
+	free(line);
+	free(words);
+	free_dlistint(dlinkedlist);
+	fclose(stream);
+	exit(EXIT_FAILURE);
 }
 
 /**
@@ -123,7 +129,7 @@ void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 		i++;
 	}
 	fprintf(stderr, "L%i: unknown instruction %s\n", line_number, command);
-	exit(98);
+	return (NULL);
 }
 
 /**
