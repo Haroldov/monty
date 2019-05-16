@@ -56,8 +56,9 @@ void op_pop(stack_t **dlinkedlist, unsigned int line_num)
 
 	if (dlinkedlist == NULL)
 	{
-		fprintf(stderr, "L%i: can't pop an empty stack", line_num);
-                exit(EXIT_FAILURE);
+		fprintf(stderr, "L%i: can't pop an empty stack\n", line_num);
+		fclose(carrier.stream);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
