@@ -68,3 +68,25 @@ void op_pop(stack_t **dlinkedlist, unsigned int line_num)
 		delete_head(dlinkedlist);
 	}
 }
+
+/**
+ * op_swap -  swaps the top two elements of the stack.
+ * @dlinkedlist: pointer to a list
+ * @line_num: line number of op command
+ */
+void op_swap(stack_t **dlinkedlist, unsigned int line_num)
+{
+	int a, b;
+
+	if (dlistint_len(*dlinkedlist) < 2)
+	{
+		fprintf(stderr, "L%i: can't swap, stack too short\n", line_num);
+		free_dlistint(*dlinkedlist), free(carrier.words), free(carrier.line);
+		fclose(carrier.stream);
+		exit(EXIT_FAILURE);
+	}
+	a = (*dlinkedlist)->n;
+	b = (*dlinkedlist)->next->n;
+	(*dlinkedlist)->n = b;
+	(*dlinkedlist)->next->n = a;
+}
