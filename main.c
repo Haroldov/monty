@@ -34,15 +34,18 @@ int main(int argc, char *argv[])
 		if (words != NULL)
 		{
 			if (check_if_not_num(words[1]) == -1 && strcmp("push", words[0]) == 0)
-			{       fprintf(stderr, "L%i: usage: push integer\n", line_num);
-				goto free_all;       }
+			{
+				fprintf(stderr, "L%i: usage: push integer\n", line_num);
+				goto free_all;
+			}
 			carrier.data = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
 			cmd = get_op(words[0], line_num);
-			free(words);
 			if (cmd == NULL)
 				goto free_all;
 			cmd(&dlinkedlist, line_num);
+			free(words);
 		}
+		free(line);
 		line = NULL;
 	}
 	free(line), free_dlistint(dlinkedlist), fclose(carrier.stream);
@@ -120,10 +123,7 @@ void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 	while (ops[i].opcode != NULL)
 	{
 		if (strcmp(command, ops[i].opcode) == 0)
-		{
-			free(command);
 			return (ops[i].f);
-		}
 		i++;
 	}
 	fprintf(stderr, "L%i: unknown instruction %s\n", line_number, command);
@@ -132,9 +132,9 @@ void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 
 /**
  *check_if_not_num - checks if a string is a number
-v *@str: string to be checked
+ *@str: string to be checked
  *Return: -1 if not num 1 if it is a num
- */
+*/
 
 int check_if_not_num(char *str)
 {
