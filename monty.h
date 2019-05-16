@@ -88,6 +88,7 @@ void op_sub(stack_t **dlinkedlist, unsigned int line_num);
 void op_mul(stack_t **dlinkedlist, unsigned int line_num);
 void op_stack(stack_t **dlinkedlist, unsigned int line_num);
 void op_queue(stack_t **dlinkedlist, unsigned int line_num);
+void op_pstr(stack_t **dlinkedlist, unsigned int line_num);
 
 /*main*/
 char **split(char *str, const char *delim);

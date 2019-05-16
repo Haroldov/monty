@@ -75,3 +75,29 @@ void op_queue(stack_t **dlinkedlist, unsigned int line_num)
 		rev_dlistint(dlinkedlist);
 	carrier.state = 1;
 }
+
+/**
+ * op_pstr - multiply the top two elements of the stack
+ * @dlinkedlist: pointer to list
+ * @line_num: line number for error
+ */
+void op_pstr(stack_t **dlinkedlist, unsigned int line_num)
+{
+	line_num = line_num;
+	if (dlistint_len(*dlinkedlist) < 1)
+	{
+		printf("\n");
+	}
+	else
+	{
+		while ((*dlinkedlist)->n != 0 && (*dlinkedlist)->next != NULL)
+		{
+			if ((*dlinkedlist)->n >= 0 && (*dlinkedlist)->n <= 127)
+			{
+				putchar((*dlinkedlist)->n);
+			}
+			(*dlinkedlist) = (*dlinkedlist)->next;
+		}
+		putchar(10);
+	}
+}
