@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	{
 		line_num++;
 		carrier.words = split(carrier.line, " \n\t");
-		if (carrier.words != NULL)
+		if (carrier.words != NULL && carrier.words[0][0] != '#')
 		{
 			if (check_if_not_num(carrier.words[1]) == -1 &&
 			    strcmp("push", carrier.words[0]) == 0)
