@@ -41,6 +41,7 @@ void op_pint(stack_t **dlinkedlist, unsigned int line_num)
 		fprintf(stderr, "L%i: can't pint, stack empty\n", line_num);
 		free_dlistint(*dlinkedlist), free(carrier.words), free(carrier.line);
 		fclose(carrier.stream);
+
 		exit(EXIT_FAILURE);
 	}
 	printf("%i\n", (*dlinkedlist)->n);
@@ -54,10 +55,12 @@ void op_pint(stack_t **dlinkedlist, unsigned int line_num)
 void op_pop(stack_t **dlinkedlist, unsigned int line_num)
 {
 
-	if (dlinkedlist == NULL)
+	if (*dlinkedlist == NULL)
 	{
 		fprintf(stderr, "L%i: can't pop an empty stack\n", line_num);
+		free_dlistint(*dlinkedlist), free(carrier.words), free(carrier.line);
 		fclose(carrier.stream);
+
 		exit(EXIT_FAILURE);
 	}
 	else
