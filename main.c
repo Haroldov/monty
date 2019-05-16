@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 		words = split(line, " \n\t");
 		if (words != NULL)
 		{
-			if (check_if_not_num(words[1]) == -1 && strcmp(words[0], "push") == 0)
+			if (check_if_not_num(words[1]) == -1 && strcmp("push", words[0]) == 0)
 			{
 				fprintf(stderr, "L%i: usage: push integer\n", line_num);
 				goto free_all;
@@ -53,15 +53,10 @@ int main(int argc, char *argv[])
 		free(line);
 		line = NULL;
 	}
-	free(line);
-	free_dlistint(dlinkedlist);
-	fclose(stream);
+	free(line), free_dlistint(dlinkedlist), fclose(stream);
 	return (EXIT_SUCCESS);
 free_all:
-	free(line);
-	free(words);
-	free_dlistint(dlinkedlist);
-	fclose(stream);
+	free(line), free(words), free_dlistint(dlinkedlist), fclose(stream);
 	exit(EXIT_FAILURE);
 }
 
@@ -140,7 +135,7 @@ void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 
 /**
  *check_if_not_num - checks if a string is a number
- *@str: string to be checked
+v *@str: string to be checked
  *Return: -1 if not num 1 if it is a num
  */
 
@@ -149,7 +144,7 @@ int check_if_not_num(char *str)
 	int i;
 
 	if (str == NULL)
-		return (1);
+		return (-1);
 	for (i = 0; *(str + i) != '\0'; i++)
 	{
 		if (isdigit(*(str + i)) == 0 && *str != '-')
