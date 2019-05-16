@@ -56,17 +56,27 @@ typedef struct instruction_s
 extern carrier_t carrier;
 
 /*Prototypes*/
+
+/*dlinkedlist#1*/
 void free_dlistint(stack_t *head);
 size_t dlistint_len(const stack_t *h);
-char **split(char *str, const char *delim);
-void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number);
+size_t print_dlistint(const stack_t *h);
+stack_t *add_dnodeint(stack_t **head, int n);
+void delete_head(stack_t **dlistint_t);
+
+/*monty_ops#1*/
 void op_push(stack_t **stack, unsigned int line);
 void op_pall(stack_t **dlinkedlist, unsigned int line);
 void op_pint(stack_t **dlinkedlist, unsigned int line);
 void op_swap(stack_t **dlinkedlist, unsigned int line);
-size_t print_dlistint(const stack_t *h);
-stack_t *add_dnodeint(stack_t **head, int n);
-int check_if_not_num(char *str);
 void op_pop(stack_t **dlinkedlist, unsigned int line_num);
-void delete_head(stack_t **dlistint_t);
+
+/*monty_ops#2*/
+void op_nop(stack_t **dlinkedlist, unsigned int line);
+
+/*main*/
+char **split(char *str, const char *delim);
+void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number);
+int check_if_not_num(char *str);
+
 #endif
