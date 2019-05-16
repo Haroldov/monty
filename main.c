@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "monty.h"
-carrier_t carrier = {0, NULL, NULL, NULL};
+carrier_t carrier = {0, NULL, NULL, NULL, 0};
 
 /**
  *main - entry point
@@ -126,7 +126,10 @@ void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 		{"pchar", op_pchar},
 		{"sub", op_sub},
 		{"mul", op_mul},
+		{"stack", op_stack},
+		{"queue", op_queue},
 		{"pstr", op_pstr},
+		{"rotl", op_rotl},
 		{NULL, NULL}
 	};
 

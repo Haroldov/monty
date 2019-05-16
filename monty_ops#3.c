@@ -51,6 +51,32 @@ void op_mul(stack_t **dlinkedlist, unsigned int line_num)
 }
 
 /**
+ * op_stack - sets format to stack (LIFO)
+ * @dlinkedlist: pointer to list
+ * @line_num: line number for error
+ */
+void op_stack(stack_t **dlinkedlist, unsigned int line_num)
+{
+	(void) line_num;
+	if (carrier.state == 1)
+		rev_dlistint(dlinkedlist);
+	carrier.state = 0;
+}
+
+/**
+ * op_queue - sets format to queue (FIFO)
+ * @dlinkedlist: pointer to list
+ * @line_num: line number for error
+ */
+void op_queue(stack_t **dlinkedlist, unsigned int line_num)
+{
+	(void) line_num;
+	if (carrier.state == 0)
+		rev_dlistint(dlinkedlist);
+	carrier.state = 1;
+}
+
+/**
  * op_pstr - multiply the top two elements of the stack
  * @dlinkedlist: pointer to list
  * @line_num: line number for error
@@ -58,19 +84,26 @@ void op_mul(stack_t **dlinkedlist, unsigned int line_num)
 void op_pstr(stack_t **dlinkedlist, unsigned int line_num)
 {
 	line_num = line_num;
+	stack_t *temp = NULL;
+
+	temp = *dlinkedlist;
+
 	if (dlistint_len(*dlinkedlist) < 1)
 	{
 		printf("\n");
+		return;
 	}
 	else
 	{
-		while ((*dlinkedlist)->n != 0 && (*dlinkedlist)->next != NULL)
+		while (temp->n != 0 && temp->next != NULL)
 		{
-			if ((*dlinkedlist)->n >= 0 && (*dlinkedlist)->n <= 127)
+			if (temp->n >= 0 && temp->n <= 127)
 			{
-				putchar((*dlinkedlist)->n);
+				putchar(temp->n);
 			}
-			(*dlinkedlist) = (*dlinkedlist)->next;
+			else
+				break;
+			temp = temp->next;
 		}
 		putchar(10);
 	}
