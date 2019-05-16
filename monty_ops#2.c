@@ -102,3 +102,28 @@ void op_add(stack_t **dlinkedlist, unsigned int line_num)
 		delete_head(dlinkedlist);
 	}
 }
+
+/**
+ * op_pchar - prints the char at the top of the stack, followed by a new line.
+ * @dlinkedlist: pointer to list
+ * @line_num: line number for error
+ */
+void op_pchar(stack_t **dlinkedlist, unsigned int line_num)
+{
+	if ((*dlinkedlist)->next == NULL)
+	{
+		fprintf(stderr, "L%i: can't pchar, stack empty\n", line_num);
+		free_dlistint(*dlinkedlist), free(carrier.words), free(carrier.line);
+		fclose(carrier.stream);
+		exit(EXIT_FAILURE);
+	}
+	if ((*dlinkedlist)->n > 127)
+	{
+		fprintf(stderr, "L%i: can't pchar, value out of range\n", line_num);
+		free_dlistint(*dlinkedlist), free(carrier.words), free(carrier.line);
+		fclose(carrier.stream);
+		exit(EXIT_FAILURE);
+	}
+	putchar((char)(*dlinkedlist)->n);
+	putchar('\n');
+}

@@ -122,6 +122,7 @@ void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 		{"div", op_div},
 		{"mod", op_mod},
 		{"add", op_add},
+		{"pchar", op_pchar},
 		{"sub", op_sub},
 		{"mul", op_mul},
 		{NULL, NULL}
