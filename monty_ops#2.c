@@ -110,7 +110,7 @@ void op_add(stack_t **dlinkedlist, unsigned int line_num)
  */
 void op_pchar(stack_t **dlinkedlist, unsigned int line_num)
 {
-	if ((*dlinkedlist)->next == NULL)
+	if (*dlinkedlist == NULL)
 	{
 		fprintf(stderr, "L%i: can't pchar, stack empty\n", line_num);
 		free_dlistint(*dlinkedlist), free(carrier.words), free(carrier.line);
