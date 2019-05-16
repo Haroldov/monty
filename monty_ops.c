@@ -25,3 +25,22 @@ void op_push(stack_t **dlinkedlist, unsigned int line_num)
 	(void) line_num;
 	add_dnodeint(dlinkedlist, data);
 }
+
+/**
+ * op_pop - removes an item from a stack
+ * @dlinkedlist: pointer to a list
+ * @line_num: line number of op command
+ */
+void op_pop(stack_t **dlinkedlist, unsigned int line_num)
+{
+
+	if (dlinkedlist == NULL)
+	{
+		fprintf(stderr, "L%i: can't pop an empty stack", line_num);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		delete_at_index(dlinkedlist, 0);
+	}
+}
