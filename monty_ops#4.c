@@ -32,6 +32,10 @@ void op_rotr(stack_t **dlinkedlist, unsigned int line_num)
 	stack_t *tmp = *dlinkedlist;
 
 	(void) line_num;
+
+	if (tmp == NULL || tmp->next == NULL)
+		return;
+
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 
