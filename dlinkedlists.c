@@ -55,40 +55,19 @@ void free_dlistint(stack_t *head)
 	free(head);
 }
 /**
- * delete_at_index - deletes a node at an index
+ * delete_head - deletes head node
  * @head: pointer to list
  * @index: index of node to delete
  */
-void delete_at_index(stack_t **head, unsigned int index)
+void delete_head(stack_t **head)
 {
 	stack_t *tmp = *head, *tmp_del = NULL;
+	
+	tmp_del = tmp;
+	if ((*tmp).next != NULL)
+		(*tmp).next->prev = NULL;
+	*head = (*tmp).next;
+	free(tmp_del);
 
-	if (*head == NULL)
-		return;
-	if (index == 0)
-	{
-		tmp_del = tmp;
-		if ((*tmp).next != NULL)
-			(*tmp).next->prev = NULL;
-		*head = (*tmp).next;
-		free(tmp_del);
-		return;
-
-	}
-	index--;
-	while (tmp != NULL && index != 0)
-	{
-		tmp = (*tmp).next;
-		index--;
-	}
-	if (index == 0)
-	{
-		tmp_del = (*tmp).next;
-		(*tmp).next = ((*tmp).next)->next;
-		if ((*tmp).next != NULL)
-			(*tmp).next->prev = tmp;
-		free(tmp_del);
-		return;
-	}
 
 }
