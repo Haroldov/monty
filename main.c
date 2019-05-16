@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "monty.h"
-carrier_t carrier = {0, NULL};
+carrier_t carrier = {0, NULL, NULL, NULL};
 
 /**
  *main - entry point
@@ -14,7 +14,6 @@ carrier_t carrier = {0, NULL};
 
 int main(int argc, char *argv[])
 {
-	char *line = NULL, **words = NULL;
 	size_t line_size = 0;
 	stack_t *dlinkedlist = NULL;
 	unsigned int line_num = 0;
@@ -27,31 +26,32 @@ int main(int argc, char *argv[])
 	if (carrier.stream == NULL)
 	{       fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);    }
-	while (getline(&line, &line_size, carrier.stream) != -1)
+	while (getline(&carrier.line, &line_size, carrier.stream) != -1)
 	{
 		line_num++;
-		words = split(line, " \n\t");
-		if (words != NULL)
+		carrier.words = split(carrier.line, " \n\t");
+		if (carrier.words != NULL)
 		{
-			if (check_if_not_num(words[1]) == -1 && strcmp("push", words[0]) == 0)
-			{
-				fprintf(stderr, "L%i: usage: push integer\n", line_num);
-				goto free_all;
-			}
-			carrier.data = (words[1] == NULL) ? 0 : (unsigned int) atoi(words[1]);
-			cmd = get_op(words[0], line_num);
+			if (check_if_not_num(carrier.words[1]) == -1 &&
+			    strcmp("push", carrier.words[0]) == 0)
+			{       fprintf(stderr, "L%i: usage: push integer\n", line_num);
+				goto free_all;     }
+			carrier.data = (carrier.words[1] == NULL) ? 0 :
+				(unsigned int) atoi(carrier.words[1]);
+			cmd = get_op(carrier.words[0], line_num);
 			if (cmd == NULL)
 				goto free_all;
 			cmd(&dlinkedlist, line_num);
-			free(words);
+			free(carrier.words);
 		}
-		free(line);
-		line = NULL;
+		free(carrier.line);
+		carrier.line = NULL;
 	}
-	free(line), free_dlistint(dlinkedlist), fclose(carrier.stream);
+	free(carrier.line), free_dlistint(dlinkedlist), fclose(carrier.stream);
 	return (EXIT_SUCCESS);
 free_all:
-	free(line), free(words), free_dlistint(dlinkedlist), fclose(carrier.stream);
+	free(carrier.line), free(carrier.words), free_dlistint(dlinkedlist);
+	fclose(carrier.stream);
 	exit(EXIT_FAILURE);
 }
 

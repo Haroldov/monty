@@ -15,6 +15,8 @@
 typedef struct carrier_s
 {
 	int data;
+	char **words;
+	char *line;
 	FILE *stream;
 } carrier_t;
 
