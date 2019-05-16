@@ -10,11 +10,12 @@ void op_rotl(stack_t **dlinkedlist, unsigned int line_num)
 	stack_t *tmp = *dlinkedlist;
 
 	(void) line_num;
-	while (tmp->next == NULL)
+	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = *dlinkedlist;
 	(*dlinkedlist)->prev = tmp;
 	tmp = (*dlinkedlist)->next;
 	(*dlinkedlist)->next = NULL;
 	*dlinkedlist = tmp;
+	(*dlinkedlist)->prev = NULL;
 }
