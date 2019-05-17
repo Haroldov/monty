@@ -2,5 +2,6 @@
 
 ## Authors
 
-Haroldo Vélez
-Ryan Hudson
+Haroldo Vélez - [Haroldov](https://github.com/Haroldov)
+
+Ryan Hudson - [ryanhudson](https://github.com/ryanhudson)
