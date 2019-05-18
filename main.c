@@ -104,12 +104,14 @@ char **split(char *str, const char *delim)
 	*(argv + i) = NULL;
 	return (argv);
 }
+
 /**
  * get_op - gets function
  * @command: command to check for
  * @LN: line number for error output
  * Return: none
  */
+
 void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
