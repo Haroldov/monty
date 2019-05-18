@@ -33,6 +33,7 @@ typedef struct carrier_s
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO Holberton project
  */
+
 typedef struct stack_s
 {
 	int n;
@@ -48,6 +49,7 @@ typedef struct stack_s
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO Holberton project
  */
+
 typedef struct instruction_s
 {
 	char *opcode;
@@ -97,7 +99,7 @@ void op_rotr(stack_t **dlinkedlist, unsigned int line_num);
 
 /*main*/
 char **split(char *str, const char *delim);
-void (*get_op(char *command, LN))(stack_t **stack, unsigned int line_number);
+void (*get_op(char *command, LN))(stack_t **stack, LN);
 int check_if_not_num(char *str);
 
 #endif
