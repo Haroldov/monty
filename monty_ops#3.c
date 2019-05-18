@@ -5,6 +5,7 @@
  * @dlinkedlist: pointer to list
  * @line_num: line number for error
  */
+
 void op_sub(stack_t **dlinkedlist, unsigned int line_num)
 {
 	int a, b;
@@ -30,6 +31,7 @@ void op_sub(stack_t **dlinkedlist, unsigned int line_num)
  * @dlinkedlist: pointer to list
  * @line_num: line number for error
  */
+
 void op_mul(stack_t **dlinkedlist, unsigned int line_num)
 {
 	int a, b;
@@ -55,6 +57,7 @@ void op_mul(stack_t **dlinkedlist, unsigned int line_num)
  * @dlinkedlist: pointer to list
  * @line_num: line number for error
  */
+
 void op_stack(stack_t **dlinkedlist, unsigned int line_num)
 {
 	(void) line_num;
@@ -67,6 +70,7 @@ void op_stack(stack_t **dlinkedlist, unsigned int line_num)
  * @dlinkedlist: pointer to list
  * @line_num: line number for error
  */
+
 void op_queue(stack_t **dlinkedlist, unsigned int line_num)
 {
 	(void) line_num;
@@ -79,6 +83,7 @@ void op_queue(stack_t **dlinkedlist, unsigned int line_num)
  * @dlinkedlist: pointer to list
  * @line_num: line number for error
  */
+
 void op_pstr(stack_t **dlinkedlist, unsigned int line_num)
 {
 	stack_t *temp = NULL;
