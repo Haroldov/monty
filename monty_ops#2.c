@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  *op_nop - doesn’t do anything.
  *@dlinkedlist: the header of the stack or queue
@@ -83,6 +84,7 @@ void op_mod(stack_t **dlinkedlist, unsigned int line_num)
  * @dlinkedlist: pointer to list
  * @line_num: line number for error
  */
+
 void op_add(stack_t **dlinkedlist, unsigned int line_num)
 {
 	int a, b;
@@ -108,6 +110,7 @@ void op_add(stack_t **dlinkedlist, unsigned int line_num)
  * @dlinkedlist: pointer to list
  * @line_num: line number for error
  */
+
 void op_pchar(stack_t **dlinkedlist, unsigned int line_num)
 {
 	if (*dlinkedlist == NULL)
