@@ -55,6 +55,7 @@ void op_pint(stack_t **dlinkedlist, unsigned int line_num)
  * @dlinkedlist: pointer to a list
  * @line_num: line number of op command
  */
+
 void op_pop(stack_t **dlinkedlist, unsigned int line_num)
 {
 
@@ -77,6 +78,7 @@ void op_pop(stack_t **dlinkedlist, unsigned int line_num)
  * @dlinkedlist: pointer to a list
  * @line_num: line number of op command
  */
+
 void op_swap(stack_t **dlinkedlist, unsigned int line_num)
 {
 	int a, b;
