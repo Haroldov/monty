@@ -5,6 +5,7 @@
  * @dlinkedlist: pointer to list
  * @line_num: line number for error
  */
+
 void op_rotl(stack_t **dlinkedlist, unsigned int line_num)
 {
 	stack_t *tmp = *dlinkedlist;
@@ -27,6 +28,7 @@ void op_rotl(stack_t **dlinkedlist, unsigned int line_num)
  * @dlinkedlist: pointer to list
  * @line_num: line number for error
  */
+
 void op_rotr(stack_t **dlinkedlist, unsigned int line_num)
 {
 	stack_t *tmp = *dlinkedlist;
