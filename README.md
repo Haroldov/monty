@@ -15,6 +15,35 @@ $ gcc --versiong
   gcc version 4.8.4
 ```
 
+### Installing
+
+Building and installing this Monty interpreter is simple. 
+
+Start by cloning the repo from github into your desired directory.
+
+```
+$ git clone https://github.com/Haroldov/monty.git
+```
+
+Next, build the files using `gcc`.
+
+```
+$ gcc -Wall -Werror -Wextra -pedantic *.c -o monty
+```
+
+After the program has been compiled, you can run it using a monty file as an argument.
+
+```
+$ cat -e a_monty_file.m
+push 1$
+push 2$
+push 3$
+pall$
+$ ./monty a_monty_file.m
+3
+2
+1
+```
 
 ## Authors
 
